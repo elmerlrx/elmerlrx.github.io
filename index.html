@@ -1,1 +1,629 @@
-"hello word" 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+	<meta http-equiv="Content-Language" content="zh-cn" />
+	<meta content=always name=referrer>
+						<meta name="keywords" content="基于 Java 的配置,Spring 教程,Java教程">
+			
+						<meta name="description" content="到目前为止，你已经看到如何使用XML配置文件来配置Springbean。如果你熟悉使用XML配置，那么我会说，不需要再学...">
+			
+			<title>基于 Java 的配置 - Spring 教程 - 极客学院Wiki</title>
+	
+	<link rel="stylesheet" type="text/css" href="http://sp1.jikexueyuan.com/static/css/register.css">
+	<link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/assets/wiki2.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/wiki2.1/css/detail.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/wiki2.1/css/markdownbody.min.css">
+</head>
+
+<body>
+<header class="detail-headfix">
+	<nav class="w-1200 clearfix">
+		<a href="http://www.jikexueyuan.com" class="head-logo" target="_blank">
+			<h2>
+				<img src="http://e.jikexueyuan.com/headerandfooter/images/logo.png" class="jklogo" alt="极客学院">
+			</h2>
+		</a>
+		<ul class="head-catalog">
+			<li class="head-catalog-list">
+				<a href="http://wiki.jikexueyuan.com">Wiki</a>
+			</li>
+			<li class="head-catalog-list">
+				<a href="http://wiki.jikexueyuan.com/list/back-end">后端开发</a>
+			</li>
+			<li class="head-catalog-list">
+				<a href="http://wiki.jikexueyuan.com/list/java">Java</a>
+			</li>
+			<li class="head-catalog-list">
+				<a href="http://wiki.jikexueyuan.com/project/spring">Spring 教程</a>
+			</li>
+		</ul>
+		<div class="head-loginbox" id="header-loginbox">
+		</div>
+	</nav>
+</header>
+
+<div class="detail-wrapper w-1200  clearfix">
+	<div class="detail-left">
+		<ul class="detail-nav">
+			<li class="detail-navlist navlist-one ">
+				<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/" >关于</a></div>
+			</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/overview.html" >概述</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/architecture.html" >体系结构</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/environment-setup.html" >环境配置</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/hello-world-example.html" >Hello World 实例</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/ioc-containers.html" >IoC 容器</a>
+				<div class="navlist-more more-one nav-down "></div> 			</div>
+							<ul class="navul-one ">
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/ioc-container/spring-bean-fatory-container.html" >Spring BeanFactory 容器</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/ioc-container/spring-application-context-container.html" >Spring ApplicationContext 容器</a>
+															</div>
+													</li>
+									</ul>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/bean-definition.html" >Bean 定义</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/bean-scopes.html" >Bean 作用域</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/bean-life-cycle.html" >Bean 生命周期</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/bean-post-processors.html" >Bean 后置处理器</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/bean-definition-inheritance.html" >Bean 定义继承</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/dependency-injection.html" >依赖注入</a>
+				<div class="navlist-more more-one nav-down "></div> 			</div>
+							<ul class="navul-one ">
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/dependency-injection/spring-constructor-based-dependency-injection.html" >Spring 基于构造函数的依赖注入</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/dependency-injection/spring-setter-based-dependency-injection.html" >Spring 基于设值函数的依赖注入</a>
+															</div>
+													</li>
+									</ul>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/injecting-inner-beans.html" >注入内部 Beans</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/injecting-collection.html" >注入集合</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/beans-autowiring.html" >Beans 自动装配</a>
+				<div class="navlist-more more-one nav-down "></div> 			</div>
+							<ul class="navul-one ">
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/beans-auto-wiring/spring-autowiring-byname.html" >Spring 自动装配 &lsquo;byName&rsquo;</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/beans-auto-wiring/spring-autowiring-byType.html" >Spring 自动装配 &lsquo;byType&rsquo;</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/beans-auto-wiring/spring-autowiring-by-Constructor.html" >Spring 由构造函数自动装配</a>
+															</div>
+													</li>
+									</ul>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/annotation-based-configuration.html" >基于注解的配置</a>
+				<div class="navlist-more more-one nav-down "></div> 			</div>
+							<ul class="navul-one ">
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/annotation-based-configuration/spring-required-annotation.html" >Spring @Required 注释</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/annotation-based-configuration/spring-autowired-annotation.html" >Spring @Autowired 注释</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/annotation-based-configuration/spring-qualifier-annotation.html" >Spring @Qualifier 注释</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/annotation-based-configuration/spring-jsr250-annotation.html" >Spring JSR-250 注释</a>
+															</div>
+													</li>
+									</ul>
+					</li>
+			<li class="detail-navlist navlist-one  navlist-active ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/java-based-configuration.html" >基于 Java 的配置</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/event-handling-in-spring.html" >Spring 中的事件处理</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/custom-events-in-spring.html" >Spring 中的自定义事件</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/aop-with-spring.html" >Spring 框架的 AOP</a>
+				<div class="navlist-more more-one nav-down "></div> 			</div>
+							<ul class="navul-one ">
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/aop-with-spring-framenwork/xml-schema-based-aop-with-spring.html" >Spring 中基于 AOP 的 XML架构</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/aop-with-spring-framenwork/aspectj-based-aop-with-spring.html" >Spring 中基于 AOP 的 @AspectJ</a>
+															</div>
+													</li>
+									</ul>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/jdbc-framework.html" >JDBC 框架</a>
+				<div class="navlist-more more-one nav-down "></div> 			</div>
+							<ul class="navul-one ">
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/jdbc-framework-overview/spring-jdbc-example.html" >Spring JDBC 示例</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/jdbc-framework-overview/sql-stored-procedure-in-spring.html" >Spring 中 SQL 的存储过程</a>
+															</div>
+													</li>
+									</ul>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/transaction-management.html" >事务管理</a>
+				<div class="navlist-more more-one nav-down "></div> 			</div>
+							<ul class="navul-one ">
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/transaction-management/spring-programmatic-transaction-management.html" >Spring 编程式事务管理</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/transaction-management/spring-declarative-transaction-management.html" >Spring 声明式事务管理</a>
+															</div>
+													</li>
+									</ul>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/web-mvc-framework.html" >Web MVC 框架</a>
+				<div class="navlist-more more-one nav-down "></div> 			</div>
+							<ul class="navul-one ">
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/mvc-framework/spring-mvc-hello-world-example.html" >Spring MVC Hello World 例子</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/mvc-framework/spring-mvc-form-handling-example.html" >Spring MVC 表单处理例子</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/mvc-framework/spring-page-redirection-example.html" >Spring 页面重定向例子</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/mvc-framework/spring-static-pages-example.html" >Spring 静态页面例子</a>
+															</div>
+													</li>
+											<li class="detail-navlist ">
+							<div class="detail-navlist-title title-two "><a href="http://wiki.jikexueyuan.com/project/spring/mvc-framework/spring-exception-handling-example.html" >Spring 异常处理例子</a>
+															</div>
+													</li>
+									</ul>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/spring/logging-with-log4j.html" >使用 Log4J 记录日志</a>
+							</div>
+					</li>
+			</ul>
+		<div class="detail-left-bottom">
+			Via 由 [ <a href="http://wiki.jikexueyuan.com" class="detail-navlist-wikilogo" target="_blank">极客学院 Wiki</a> ] 提供
+		</div>
+	</div>
+	<aside class="detail-right">
+		<!-- author -->
+		<div class="right-author">
+			<!-- 欢迎成为极客学院WIKI作者 -->
+									<!-- 极客学院团队出品 -->
+				<div class="right-author-jkprint"></div>
+					</div>
+		<!-- /author -->
+				<!-- ad -->
+		<h2 class="right-adtitle">Sponsered by</h2>
+		<div class="mg-t10 ad" id="ad-right-1"></div>
+		<div class="mg-t10 ad" id="ad-right-2"></div>
+		<div class="mg-t10 ad" id="ad-right-3"></div>
+
+		<!-- 请置于所有广告位代码之前 -->
+		<script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
+
+		<!-- 广告位：注册页 -->
+		<script type="text/javascript">
+			BAIDU_CLB_fillSlotAsync('1176465', 'ad-right-1');
+			BAIDU_CLB_fillSlotAsync('1176522', 'ad-right-2');
+			BAIDU_CLB_fillSlotAsync('1176466', 'ad-right-3');
+		</script>
+		<!-- /ad -->
+				<!-- download -->
+		<h2 class="right-h2">离线下载</h2>
+		<div class="right-download">
+							<a href="http://passport.jikexueyuan.com/sso/login " target="_blank" class="download-pdf blue-btn">PDF版</a>
+				<a href="http://passport.jikexueyuan.com/sso/login " target="_blank" class="download-epub blue-btn">ePub版</a>
+			
+		</div>
+		<!-- /download -->
+
+		<!-- resource -->
+		<h2 class="right-h2">相关资源</h2>
+		<ul class="right-resource">
+						<li class="resource-item">
+				<img src="/assets/wiki2.1/images/iconblog.png"><a href="http://wiki.jikexueyuan.com/project/junit" target="_blank"> JUnit 入门教程</a>
+			</li>
+						<li class="resource-item">
+				<img src="/assets/wiki2.1/images/iconblog.png"><a href="http://wiki.jikexueyuan.com/project/elasticsearch-definitive-guide-cn" target="_blank"> Elasticsearch 权威指南（中文版）</a>
+			</li>
+						<li class="resource-item">
+				<img src="/assets/wiki2.1/images/iconvideo.png"><a href="http://www.jikexueyuan.com/course/178.html" target="_blank"> JavaScript语法详解</a>
+			</li>
+						<li class="resource-item">
+				<img src="/assets/wiki2.1/images/iconask.png"><a href="http://wenda.jikexueyuan.com/question/25428" target="_blank"> 老师提供一些Sublime Text插件呗</a>
+			</li>
+						<li class="resource-item">
+				<img src="/assets/wiki2.1/images/icondown.png"><a href="http://download.jikexueyuan.com/detail/id/174" target="_blank"> JavaScript教程：从入门到精通完整版</a>
+			</li>
+						<li class="resource-item">
+				<img src="/assets/wiki2.1/images/icongroup.png"><a href="http://qun.jikexueyuan.com/java/topic/71" target="_blank"> java web学习</a>
+			</li>
+					</ul>
+		<!-- /resource -->
+
+	</aside>
+	<div class="detail-main">
+		<div class="markdown-body"><h1>基于 Java 的配置</h1>
+<p>到目前为止，你已经看到如何使用 XML 配置文件来配置 Spring bean。如果你熟悉使用 XML 配置，那么我会说，不需要再学习如何进行基于 Java 的配置是，因为你要达到相同的结果，可以使用其他可用的配置。</p>
+<p>基于 Java 的配置选项，可以使你在不用配置 XML 的情况下编写大多数的 Spring，但是一些有帮助的基于 Java 的注解，解释如下：</p>
+<h2 id="5e18169f55e8cec6403653f891b21f9b">@Configuration 和 @Bean 注解</h2>
+<p>带有 <strong>@Configuration</strong> 的注解类表示这个类可以使用 Spring IoC 容器作为 bean 定义的来源。<strong>@Bean</strong> 注解告诉 Spring，一个带有 @Bean 的注解方法将返回一个对象，该对象应该被注册为在 Spring 应用程序上下文中的 bean。最简单可行的 @Configuration 类如下所示：</p>
+<pre><code>package com.tutorialspoint;
+import org.springframework.context.annotation.*;
+@Configuration
+public class HelloWorldConfig {
+   @Bean 
+   public HelloWorld helloWorld(){
+      return new HelloWorld();
+   }
+}</code></pre>
+<p>上面的代码将等同于下面的 XML 配置：</p>
+<pre><code>&lt;beans&gt;
+   &lt;bean id="helloWorld" class="com.tutorialspoint.HelloWorld" /&gt;
+&lt;/beans&gt;</code></pre>
+<p>在这里，带有 @Bean 注解的方法名称作为 bean 的 ID，它创建并返回实际的 bean。你的配置类可以声明多个 @Bean。一旦定义了配置类，你就可以使用 <em>AnnotationConfigApplicationContext</em> 来加载并把他们提供给 Spring 容器，如下所示：</p>
+<pre><code>public static void main(String[] args) {
+   ApplicationContext ctx = 
+   new AnnotationConfigApplicationContext(HelloWorldConfig.class); 
+   HelloWorld helloWorld = ctx.getBean(HelloWorld.class);
+   helloWorld.setMessage("Hello World!");
+   helloWorld.getMessage();
+}</code></pre>
+<p>你可以加载各种配置类，如下所示：</p>
+<pre><code>public static void main(String[] args) {
+   AnnotationConfigApplicationContext ctx = 
+   new AnnotationConfigApplicationContext();
+   ctx.register(AppConfig.class, OtherConfig.class);
+   ctx.register(AdditionalConfig.class);
+   ctx.refresh();
+   MyService myService = ctx.getBean(MyService.class);
+   myService.doStuff();
+}</code></pre>
+<h2 id="8cb94eb1990adbea3766315549a066d8">例子</h2>
+<p>让我们在恰当的位置使用 Eclipse IDE，然后按照下面的步骤来创建一个 Spring 应用程序：</p>
+<table class="table table-bordered"><tr><th class="fivepct">步骤</th>
+<th>描述</th>
+</tr><tr><td>1</td>
+<td>创建一个名称为 <i>SpringExample</i> 的项目，并且在创建项目的 <b>src</b> 文件夹中创建一个包 <i>com.tutorialspoint</i>。</td>
+</tr><tr><td>2</td>
+<td>使用 <i>Add External JARs</i> 选项，添加所需的 Spring 库,解释见 <i>Spring Hello World Example</i> 章节。</td>
+</tr><tr><td>3</td>
+<td>因为你是使用基于 java 的注解，所以你还需要添加来自 Java 安装目录的 <i>CGLIB.jar</i> 和可以从 <i>asm.ow2.org</i> 中下载的 ASM.jar 库。</td>
+</tr><tr><td>4</td>
+<td>在 <i>com.tutorialspoint</i> 包中创建 Java 类 <i>HelloWorldConfig</i>、<i>HelloWorld</i> 和 <i>MainApp</i>。</td>
+</tr><tr><td>5</td>
+<td>最后一步是创建的所有 Java 文件和 Bean 配置文件的内容，并运行应用程序，解释如下所示。</td>
+</tr></table>
+<p>这里是 <strong>HelloWorldConfig.java</strong> 文件的内容：</p>
+<pre><code>package com.tutorialspoint;
+import org.springframework.context.annotation.*;
+@Configuration
+public class HelloWorldConfig {
+   @Bean 
+   public HelloWorld helloWorld(){
+      return new HelloWorld();
+   }
+}</code></pre>
+<p>这里是 <strong>HelloWorld.java</strong> 文件的内容：</p>
+<pre><code>package com.tutorialspoint;
+
+public class HelloWorld {
+   private String message;
+
+   public void setMessage(String message){
+      this.message  = message;
+   }
+
+   public void getMessage(){
+      System.out.println("Your Message : " + message);
+   }
+}</code></pre>
+<p>下面是 <strong>MainApp.java</strong> 文件的内容：</p>
+<pre><code>package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.*;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext ctx = 
+      new AnnotationConfigApplicationContext(HelloWorldConfig.class);
+
+      HelloWorld helloWorld = ctx.getBean(HelloWorld.class);
+
+      helloWorld.setMessage("Hello World!");
+      helloWorld.getMessage();
+   }
+}</code></pre>
+<p>一旦你完成了创建所有的源文件并添加所需的额外的库后，我们就可以运行该应用程序。你应该注意这里不需要配置文件。如果你的应用程序一切都正常，将输出以下信息：</p>
+<pre><code>Your Message : Hello World!</code></pre>
+<h2 id="125ef16ffce6354dcf9c76ae2e11d225">注入 Bean 的依赖性</h2>
+<p>当 @Beans 依赖对方时，表达这种依赖性非常简单，只要有一个 bean 方法调用另一个，如下所示：</p>
+<pre><code>package com.tutorialspoint;
+import org.springframework.context.annotation.*;
+@Configuration
+public class AppConfig {
+   @Bean
+   public Foo foo() {
+      return new Foo(bar());
+   }
+   @Bean
+   public Bar bar() {
+      return new Bar();
+   }
+}</code></pre>
+<p>这里，foo Bean 通过构造函数注入来接收参考基准。现在，让我们看到一个正在执行的例子：</p>
+<h2 id="587da97d02c13bfd7e4bc3df67945af5">例子:</h2>
+<p>让我们在恰当的位置使用 Eclipse IDE，然后按照下面的步骤来创建一个 Spring 应用程序：</p>
+<table class="table table-bordered"><tr><th class="fivepct">步骤</th>
+<th>描述</th>
+</tr><tr><td>1</td>
+<td>创建一个名称为 <i>SpringExample</i> 的项目，并且在创建项目的 <b>src</b> 文件夹中创建一个包 <i>com.tutorialspoint</i>。</td>
+</tr><tr><td>2</td>
+<td>使用 <i>Add External JARs</i> 选项，添加所需的 Spring 库,解释见 <i>Spring Hello World Example</i> 章节。</td>
+</tr><tr><td>3</td>
+<td>因为你是使用基于 java 的注解，所以你还需要添加来自 Java 安装目录的 <i>CGLIB.jar</i> 和可以从 <i>asm.ow2.org</i> 中下载的 ASM.jar 库。</td>
+</tr><tr><td>4</td>
+<td>在 <i>com.tutorialspoint</i> 包中创建 Java 类 <i>TextEditorConfig</i>、<i>TextEditor</i>、<i>SpellChecker</i> 和 <i>MainApp</i>。</td>
+</tr><tr><td>5</td>
+<td>最后一步是创建的所有 Java 文件和 Bean 配置文件的内容，并运行应用程序，解释如下所示。</td>
+</tr></table>
+<p>这里是 <strong>TextEditorConfig.java</strong> 文件的内容：</p>
+<pre><code>package com.tutorialspoint;
+import org.springframework.context.annotation.*;
+@Configuration
+public class TextEditorConfig {
+   @Bean 
+   public TextEditor textEditor(){
+      return new TextEditor( spellChecker() );
+   }
+   @Bean 
+   public SpellChecker spellChecker(){
+      return new SpellChecker( );
+   }
+}</code></pre>
+<p>这里是 TextEditor.java 文件的内容：</p>
+<pre><code>package com.tutorialspoint;
+public class TextEditor {
+   private SpellChecker spellChecker;
+   public TextEditor(SpellChecker spellChecker){
+      System.out.println("Inside TextEditor constructor." );
+      this.spellChecker = spellChecker;
+   }
+   public void spellCheck(){
+      spellChecker.checkSpelling();
+   }
+}</code></pre>
+<p>下面是另一个依赖的类文件 <strong>SpellChecker.java</strong> 的内容：</p>
+<pre><code>package com.tutorialspoint;
+public class SpellChecker {
+   public SpellChecker(){
+      System.out.println("Inside SpellChecker constructor." );
+   }
+   public void checkSpelling(){
+      System.out.println("Inside checkSpelling." );
+   }
+
+}</code></pre>
+<p>下面是 <strong>MainApp.java</strong> 文件的内容：</p>
+<pre><code>package com.tutorialspoint;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.*;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext ctx = 
+      new AnnotationConfigApplicationContext(TextEditorConfig.class);
+
+      TextEditor te = ctx.getBean(TextEditor.class);
+
+      te.spellCheck();
+   }
+}</code></pre>
+<p>一旦你完成了创建所有的源文件并添加所需的额外的库后，我们就可以运行该应用程序。你应该注意这里不需要配置文件。如果你的应用程序一切都正常，将输出以下信息：</p>
+<pre><code>Inside SpellChecker constructor.
+Inside TextEditor constructor.
+Inside checkSpelling.</code></pre>
+<h2 id="88a448226757e45f06e4e90f5ae0a178">@Import 注解:</h2>
+<p><strong>@import</strong> 注解允许从另一个配置类中加载 @Bean 定义。考虑 ConfigA 类，如下所示：</p>
+<pre><code>@Configuration
+public class ConfigA {
+   @Bean
+   public A a() {
+      return new A(); 
+   }
+}</code></pre>
+<p>你可以在另一个 Bean 声明中导入上述 Bean 声明，如下所示：</p>
+<pre><code>@Configuration
+@Import(ConfigA.class)
+public class ConfigB {
+   @Bean
+   public B a() {
+      return new A(); 
+   }
+}</code></pre>
+<p>现在，当实例化上下文时，不需要同时指定 ConfigA.class 和 ConfigB.class，只有 ConfigB 类需要提供，如下所示：</p>
+<pre><code>public static void main(String[] args) {
+   ApplicationContext ctx = 
+   new AnnotationConfigApplicationContext(ConfigB.class);
+   // now both beans A and B will be available...
+   A a = ctx.getBean(A.class);
+   B b = ctx.getBean(B.class);
+}</code></pre>
+<h2 id="a859db29f2e97b9626cf3a2ea5971bab">生命周期回调</h2>
+<p>@Bean 注解支持指定任意的初始化和销毁的回调方法，就像在 bean 元素中 Spring 的 XML 的初始化方法和销毁方法的属性：</p>
+<pre><code>public class Foo {
+   public void init() {
+      // initialization logic
+   }
+   public void cleanup() {
+      // destruction logic
+   }
+}
+
+@Configuration
+public class AppConfig {
+   @Bean(initMethod = "init", destroyMethod = "cleanup" )
+   public Foo foo() {
+      return new Foo();
+   }
+}</code></pre>
+<p>指定 Bean 的范围：</p>
+<p>默认范围是单实例，但是你可以重写带有 @Scope 注解的该方法，如下所示：</p>
+<pre><code>@Configuration
+public class AppConfig {
+   @Bean
+   @Scope("prototype")
+   public Foo foo() {
+      return new Foo();
+   }
+}</code></pre></div>
+
+		
+		<div class="previous-and-next">
+							<span class="pull-left">上一篇: <a id="previous_link" href="/project/spring/annotation-based-configuration/spring-jsr250-annotation.html" data-toggle="tooltip" data-placement="top" title="上翻页快捷键：左方向键">Spring JSR-250...</a></span>
+			
+							<span class="pull-right">下一篇: <a id="next_link" href="/project/spring/event-handling-in-spring.html" data-toggle="tooltip" data-placement="top" title="下翻页快捷键：右方向键">Spring 中的事件...</a></span>
+					</div>
+
+		<div class="detail-share clearfix">
+			<div class="bdsharebuttonbox share-item">
+				<a href="#" class="bds_more" data-cmd="more"></a>
+				<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+				<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+				<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+				<a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+			</div>
+			<script>
+				window._bd_share_config = {
+					"common": {
+						"bdSnsKey": {},
+						"bdText": "",
+						"bdMini": "2",
+						"bdMiniList": false,
+						"bdPic": "",
+						"bdStyle": "0",
+						"bdSize": "16"
+					},
+					"share": {},
+					"image": {
+						"viewList": ["weixin", "tsina", "qzone", "youdao"],
+						"viewText": "分享到：",
+						"viewSize": "16"
+					}
+				};
+				with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+			</script>
+		</div>
+					<div id="jkcomments"></div>
+					<div class="wiki-right">
+			<div class="backtotop">
+				<a href="javascript:;" class="btn-backtotop" style="display: none;">
+					<div class="arrow"></div>
+					<div class="stick"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript" src="http://sp1.jikexueyuan.com/static/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/wiki2.1/js/detail.js"></script>
+<script type="text/javascript" src="/assets/wiki2.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://sp1.jikexueyuan.com/static/scripts/LoginAndRegister.js"></script>
+
+
+	<script>
+		var JKcomments = {
+			perPage: 15,
+			model: "wiki", //模块名称（必填）
+			parent_id: "spring",
+			item_id: "56095018792703bd21ff1b3c8af8f866" //被评论信息ID（必填）
+		}
+	</script>
+	<script type="text/javascript" src="http://sw1.jikexueyuan.com/home/js/comments.min.js"></script>
+	
+<script type="text/javascript">
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    var _Sjkxy     = _Sjkxy || [];
+    _Sjkxy['params']    = {wikiP:'Spring 教程' , posId:117001, po:69001 , wPId : '228'};
+</script>
+
+
+<script type="text/javascript" src='http://e.jikexueyuan.com/static/js/growingio.js'></script>
+</body>
+
+</html>
+
